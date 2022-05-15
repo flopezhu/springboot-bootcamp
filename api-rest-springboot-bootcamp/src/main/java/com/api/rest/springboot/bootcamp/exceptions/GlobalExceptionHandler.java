@@ -16,19 +16,19 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 import java.util.Optional;
 
-@Component
-@Order(-2)
-public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
+/*@Component
+@Order(-2)*/
+public class GlobalExceptionHandler  {
 
 
-    public GlobalExceptionHandler(ErrorAttributes errorAttributes,
+    /*public GlobalExceptionHandler(ErrorAttributes errorAttributes,
                                   ApplicationContext applicationContext,
                                   ServerCodecConfigurer codecConfigurer) {
         super(errorAttributes, new WebProperties.Resources(), applicationContext);
         this.setMessageWriters(codecConfigurer.getWriters());
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
         return RouterFunctions.route(RequestPredicates.all(), this::formatErrorResponse);
     }
@@ -40,5 +40,5 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
                 .status(status)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(errorAttributesMap));
-    }
+    }*/
 }
