@@ -1,6 +1,5 @@
 package com.api.rest.springboot.bootcamp.service;
 
-import com.api.rest.springboot.bootcamp.document.Product;
 import com.api.rest.springboot.bootcamp.dto.ProductDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,5 +13,5 @@ public interface ProductService {
 
     Mono<ProductDto> updateProductForId(Mono<ProductDto> productDtoMono, String id);
 
-    Mono<Void> deleteProductForId(String id);
+    Mono<String> deleteProductForId(String id);
 }

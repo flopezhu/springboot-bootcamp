@@ -52,8 +52,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Mono<String> deleteById(String id) {
-        return customerDAO.findById(id).flatMap(customer -> this.customerDAO.deleteById(customer.getId()).thenReturn("Customer has deleted"))
-                .switchIfEmpty(Mono.error(() -> new CustomerNotFoundException(id)));
+        return customerDAO.findById(id).flatMap(customer -> this.customerDAO.deleteById(customer.getId())
+                        .thenReturn("Customer has deleted")).switchIfEmpty(Mono.error(() -> new CustomerNotFoundException(id)));
         //return customerDAO.deleteById(id).switchIfEmpty(Mono.error(() -> new CustomerNotFoundException(id)));
     }
 }
