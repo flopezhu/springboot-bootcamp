@@ -8,6 +8,8 @@ spring:
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
           default-label: master
+  application:
+    name: bootcamp-config-server
   security:
     user:
       name: root
