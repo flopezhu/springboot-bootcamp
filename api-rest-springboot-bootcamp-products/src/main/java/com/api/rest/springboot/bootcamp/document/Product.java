@@ -4,19 +4,16 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Document(collection = "product")
+@Document(collection = "products")
 public class Product {
     @Id
     private String id;
-    private String customerId;
+    private String code;
     private String productType;
     private String productName;
-    private Date signedDate;
+    private String description;
 }

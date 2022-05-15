@@ -1,8 +1,8 @@
 package com.api.rest.springboot.bootcamp.service.impl;
 
-import com.api.rest.springboot.bootcamp.document.Product;
+import com.api.rest.springboot.bootcamp.document.errors.ProductNotFoundException;
 import com.api.rest.springboot.bootcamp.dto.ProductDto;
-import com.api.rest.springboot.bootcamp.respository.ProductRepository;
+import com.api.rest.springboot.bootcamp.respository.ProductDAO;
 import com.api.rest.springboot.bootcamp.service.ProductService;
 import com.api.rest.springboot.bootcamp.util.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductDAO productRepository;
 
     @Override
     public Flux<ProductDto> getAllProducts() {
@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Mono<ProductDto> getProductForId(String id) {
-        return productRepository.findById(id).map(AppUtils::entityToDto);
+        return productRepository.findById(id).map(AppUtils::entityToDto).switchIfEmpty(Mono.error(() -> new ProductNotFoundException(id)));
     }
 
     @Override
@@ -39,13 +39,13 @@ public class ProductServiceImpl implements ProductService {
                 .flatMap(product -> productDtoMono.map(AppUtils::dtoToEntities))
                 .doOnNext(idProduct -> idProduct.setId(id))
                 .flatMap(productRepository::save)
-                .map(AppUtils::entityToDto);
+                .map(AppUtils::entityToDto)
+                .switchIfEmpty(Mono.error(() -> new ProductNotFoundException(id)));
     }
 
     @Override
-    public Mono<Void> deleteProductForId(String id) {
-        return productRepository.deleteById(id);
+    public Mono<String> deleteProductForId(String id) {
+        return productRepository.findById(id).flatMap(product -> this.productRepository.deleteById(product.getId())
+                .thenReturn("The Product has deleted")).switchIfEmpty(Mono.error(() -> new ProductNotFoundException(id)));
     }
-
-
 }

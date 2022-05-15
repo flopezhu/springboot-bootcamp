@@ -1,8 +1,6 @@
 package com.api.rest.springboot.bootcamp.service;
 
-import com.api.rest.springboot.bootcamp.documents.Customer;
 import com.api.rest.springboot.bootcamp.dto.CustomerDto;
-import com.api.rest.springboot.bootcamp.repository.CustomerDAO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

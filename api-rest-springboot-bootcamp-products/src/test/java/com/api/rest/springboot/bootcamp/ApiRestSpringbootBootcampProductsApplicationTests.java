@@ -36,10 +36,10 @@ class ApiRestSpringbootBootcampProductsApplicationTests {
 	public void getCustomersTest() {
 		Flux<ProductDto> productDtoFlux = Flux.just(ProductDto.builder()
 				.id(UUID.randomUUID().toString())
-				.customerId("12345678")
+				.code("12345678")
 				.productType("Cuenta Bancaria")
 				.productName("Cuenta de ahorro")
-				.signedDate(new Date())
+				.description("Cuenta de ahorro personal")
 				.build()
 		);
 
@@ -55,10 +55,10 @@ class ApiRestSpringbootBootcampProductsApplicationTests {
 				.expectSubscription()
 				.expectNext(ProductDto.builder()
 						.id(UUID.randomUUID().toString())
-						.customerId("12345678")
+						.code("12345678")
 						.productType("Cuenta Bancaria")
 						.productName("Cuenta de ahorro")
-						.signedDate(new Date())
+						.description("Cuenta de ahorro de prueba")
 						.build())
 				.verifyComplete();
 
@@ -67,10 +67,10 @@ class ApiRestSpringbootBootcampProductsApplicationTests {
 	public void createProduct() {
 		Mono<ProductDto> productDtoMono = Mono.just(ProductDto.builder()
 				.id(UUID.randomUUID().toString())
-				.customerId("12345678")
+				.code("12345678")
 				.productType("Cuenta Bancaria")
 				.productName("Cuenta de ahorro")
-				.signedDate(new Date())
+				.description("Cuenta de ahorro de prueba")
 				.build()
 		);
 		when(productService.saveProduct(productDtoMono)).thenReturn(productDtoMono);
