@@ -5,6 +5,8 @@ import com.api.rest.springboot.bootcamp.dto.ProductDto;
 import com.api.rest.springboot.bootcamp.respository.ProductDAO;
 import com.api.rest.springboot.bootcamp.service.ProductService;
 import com.api.rest.springboot.bootcamp.util.AppUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -13,6 +15,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
     @Autowired
     private ProductDAO productRepository;
 

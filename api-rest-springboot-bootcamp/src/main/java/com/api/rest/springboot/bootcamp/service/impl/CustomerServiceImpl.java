@@ -1,5 +1,6 @@
 package com.api.rest.springboot.bootcamp.service.impl;
 
+import com.api.rest.springboot.bootcamp.documents.CustomerType;
 import com.api.rest.springboot.bootcamp.documents.error.CustomerNotFoundException;
 import com.api.rest.springboot.bootcamp.dto.CustomerDto;
 import com.api.rest.springboot.bootcamp.exceptions.BadRequestException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 
 
 @Service
