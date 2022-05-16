@@ -1,9 +1,10 @@
 package com.api.rest.springdata.bootcamp.service;
 
 import com.api.rest.springdata.bootcamp.dto.CustomerTypeDto;
+import com.api.rest.springdata.bootcamp.dto.CustomerTypeResponseDto;
 
 public interface CustomerTypeService {
-    CustomerTypeDto getAllCustomerType();
+    CustomerTypeResponseDto getAllCustomerType(int pageNumber, int pageSize);
 
     CustomerTypeDto getCustomerTypeForId(String id);
 
@@ -11,5 +12,5 @@ public interface CustomerTypeService {
 
     CustomerTypeDto updateCustomerTypeForId(CustomerTypeDto customerTypeDto, String id);
 
-    Void deleteCustomerTypeForId(String id);
+    void deleteCustomerTypeForId(String id);
 }

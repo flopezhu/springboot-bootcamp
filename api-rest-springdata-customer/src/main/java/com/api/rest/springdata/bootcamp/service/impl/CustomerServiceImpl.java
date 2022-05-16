@@ -3,16 +3,15 @@ package com.api.rest.springdata.bootcamp.service.impl;
 import com.api.rest.springdata.bootcamp.document.Customer;
 import com.api.rest.springdata.bootcamp.dto.CustomerDto;
 import com.api.rest.springdata.bootcamp.dto.CustomerResponseDto;
+import com.api.rest.springdata.bootcamp.dto.CustomerTypeDto;
 import com.api.rest.springdata.bootcamp.exceptions.ResourceNotFoundException;
 import com.api.rest.springdata.bootcamp.repository.CustomerDao;
 import com.api.rest.springdata.bootcamp.service.CustomerService;
-import com.api.rest.springdata.bootcamp.util.AppUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,8 +55,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto updateCustomerForId(CustomerDto customerDto, String id) {
-        this.getCustomerForIdUtil(id);
-        Customer updateCustomer= customerDao.save(this.dtoToEntities(customerDto));
+        Customer customer = this.getCustomerForIdUtil(id);
+        customer.setName(customerDto.getName());
+        customer.setLastName(customerDto.getLastName());
+        customer.setSex(customerDto.getSex());
+        customer.setDateBirth(customerDto.getDateBirth());
+        customer.setDocumentType(customerDto.getDocumentType());
+        customer.setDocumentNumber(customerDto.getDocumentNumber());
+        customer.setAddress(customerDto.getAddress());
+        customer.setPhone(customerDto.getPhone());
+        customer.setEmail(customerDto.getEmail());
+        customer.setCustomerTypeList(customerDto.getCustomerTypeList());
+        customer.setProductList(customerDto.getProductList());
+        Customer updateCustomer = customerDao.save(customer);
         return this.entitiesToDto(updateCustomer);
     }
 

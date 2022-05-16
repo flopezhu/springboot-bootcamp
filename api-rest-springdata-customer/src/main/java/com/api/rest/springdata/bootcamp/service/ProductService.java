@@ -2,9 +2,10 @@ package com.api.rest.springdata.bootcamp.service;
 
 import com.api.rest.springdata.bootcamp.document.Product;
 import com.api.rest.springdata.bootcamp.dto.ProductDto;
+import com.api.rest.springdata.bootcamp.dto.ProductResponseDto;
 
 public interface ProductService {
-    ProductDto getAllProducts();
+    ProductResponseDto getAllProducts(int pageNumber, int pageSize);
 
     ProductDto getProductForId(String id);
 
@@ -12,5 +13,5 @@ public interface ProductService {
 
     ProductDto updateProductForId(ProductDto productDto, String id);
 
-    Void deleteProductForId(String id);
+    void deleteProductForId(String id);
 }

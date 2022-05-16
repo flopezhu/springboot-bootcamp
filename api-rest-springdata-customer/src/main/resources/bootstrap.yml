@@ -7,4 +7,4 @@ spring:
       username: root
       password: admin
       enabled: true
-debug: true
+debug: false
